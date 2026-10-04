@@ -1,0 +1,14 @@
+/vendor/
+
+/storage/smarty/compile/*
+/storage/smarty/cache/*
+/storage/smarty/config/*
+
+.env
+
+.idea/
+.vs/
+
+*.log
+.DS_Store
+Thumbs.db
