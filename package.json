@@ -1,0 +1,24 @@
+{
+  "name": "my_blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass resources/scss/style.scss public/assets/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yokai-404/Test-MyBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yokai-404/Test-MyBlog/issues"
+  },
+  "homepage": "https://github.com/yokai-404/Test-MyBlog#readme",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.105.1"
+  }
+}

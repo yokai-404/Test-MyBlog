@@ -54,31 +54,23 @@ foreach ($files as $file) {
         );
     }
 
-    try {
-        $pdo->beginTransaction();
+try {
+    $pdo->exec($sql);
 
-        $pdo->exec($sql);
+    $statement = $pdo->prepare(
+        'INSERT INTO migrations (migration) VALUES (:migration)'
+    );
 
-        $statement = $pdo->prepare(
-            'INSERT INTO migrations (migration) VALUES (:migration)'
-        );
+    $statement->execute([
+        'migration' => $migration,
+    ]);
 
-        $statement->execute([
-            'migration' => $migration,
-        ]);
+    echo "Completed: {$migration}" . PHP_EOL;
+} catch (Throwable $exception) {
+    echo "Failed: {$migration}" . PHP_EOL;
 
-        $pdo->commit();
-
-        echo "Completed: {$migration}" . PHP_EOL;
-    } catch (Throwable $exception) {
-        if ($pdo->inTransaction()) {
-            $pdo->rollBack();
-        }
-
-        echo "Failed: {$migration}" . PHP_EOL;
-
-        throw $exception;
-    }
+    throw $exception;
+}
 }
 
 echo 'All migrations are up to date.' . PHP_EOL;
