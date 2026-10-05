@@ -11,17 +11,27 @@
         ← {$category.name|escape}
     </a>
 
+
     <header class="post-header">
 
-        <h1>{$post.title|escape}</h1>
+        <span class="page-header__eyebrow">
+            Статья
+        </span>
+
+        <h1>
+            {$post.title|escape}
+        </h1>
 
         {if $post.description}
+
             <p class="post-description">
                 {$post.description|escape}
             </p>
+
         {/if}
 
-        <div class="post-meta">
+        <div class="post-meta post-header__meta">
+
             <span>
                 Опубликовано: {$post.published_at|escape}
             </span>
@@ -33,28 +43,38 @@
             <span>
                 Просмотров: {$post.views}
             </span>
+
         </div>
 
     </header>
 
+
     {if $post.image}
-        <div class="post-image">
+
+        <figure class="post-image">
+
             <img
                 src="{$post.image|escape}"
                 alt="{$post.title|escape}"
             >
-        </div>
+
+        </figure>
+
     {/if}
+
 
     <div class="post-content">
         {$post.content|escape|nl2br}
     </div>
 
+
     {if $post.categories}
 
-        <div class="post-categories">
+        <section class="post-categories">
 
-            <strong>Категории:</strong>
+            <h2 class="post-categories__title">
+                Категории
+            </h2>
 
             <div class="category-tags">
 
@@ -71,7 +91,7 @@
 
             </div>
 
-        </div>
+        </section>
 
     {/if}
 
@@ -80,7 +100,22 @@
 
 <section class="similar-section">
 
-    <h2>Похожие статьи</h2>
+    <div class="similar-section__header">
+
+        <div>
+
+            <span class="page-header__eyebrow">
+                Вам может понравиться
+            </span>
+
+            <h2>
+                Похожие статьи
+            </h2>
+
+        </div>
+
+    </div>
+
 
     {if $similarPosts}
 
@@ -91,27 +126,47 @@
                 <article class="post-card">
 
                     {if $similar.image}
-                        <img
-                            src="{$similar.image|escape}"
-                            alt="{$similar.title|escape}"
+
+                        <a
+                            href="/category/{$similar.category_name|escape:'url'}/post/{$similar.id}"
+                            class="post-card__image-link"
+                            tabindex="-1"
+                            aria-hidden="true"
                         >
+                            <img
+                                src="{$similar.image|escape}"
+                                alt=""
+                                class="post-card__image"
+                            >
+                        </a>
+
                     {/if}
+
 
                     <div class="post-card-content">
 
-                        <h3>
-                            <a href="/category/{$similar.category_name|escape:'url'}/post/{$similar.id}">
+                        <h3 class="post-card__title">
+
+                            <a
+                                href="/category/{$similar.category_name|escape:'url'}/post/{$similar.id}"
+                            >
                                 {$similar.title|escape}
                             </a>
+
                         </h3>
 
+
                         {if $similar.description}
-                            <p>
+
+                            <p class="post-card__description">
                                 {$similar.description|escape}
                             </p>
+
                         {/if}
 
+
                         <div class="post-meta">
+
                             <span>
                                 {$similar.published_at|escape}
                             </span>
@@ -119,6 +174,7 @@
                             <span>
                                 Просмотров: {$similar.views}
                             </span>
+
                         </div>
 
                     </div>

@@ -26,11 +26,14 @@ body {
     color: $color-text;
     line-height: 1.5;
 }
-
 img {
     max-width: 100%;
+    vertical-align: middle;
 }
-
+::selection {
+    background: $color-primary;
+    color: #fff;
+}
 a {
     color: inherit;
     text-decoration: none;

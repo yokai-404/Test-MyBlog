@@ -2,12 +2,22 @@
 
 {block name="content"}
 
-<section class="page-header error-page">
+<section class="error-page">
 
-    <h1>404</h1>
+    <span class="page-header__eyebrow">
+        Ошибка
+    </span>
+
+    <h1>
+        404
+    </h1>
+
+    <h2>
+        Страница не найдена
+    </h2>
 
     <p>
-        Страница не найдена.
+        Возможно, страница была удалена или вы перешли по неверной ссылке.
     </p>
 
     <a href="/" class="button">

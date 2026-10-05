@@ -2,77 +2,110 @@
 
 {block name="content"}
 
-<section class="page-header">
+<section class="category-header">
 
     <a href="/" class="back-link">
         ← На главную
     </a>
 
-    <h1>{$category.name|escape}</h1>
+    <span class="page-header__eyebrow">
+        Категория
+    </span>
+
+    <h1>
+        {$category.name|escape}
+    </h1>
 
     {if $category.description}
-        <p>{$category.description|escape}</p>
+        <p>
+            {$category.description|escape}
+        </p>
     {/if}
 
 </section>
 
+
 <section class="category-page">
 
-    <div class="sorting">
+    <div class="category-toolbar">
 
-        <span>Сортировка:</span>
+        <div class="sorting">
 
-        {if $sort === 'date'}
-            {if $direction === 'DESC'}
-                <a
-                    href="?sort=date&direction=ASC&page={$page}"
-                    class="sort-link active"
-                >
-                    Дата ↓
-                </a>
+            <span class="sorting__label">
+                Сортировка:
+            </span>
+
+            {if $sort === 'date'}
+
+                {if $direction === 'DESC'}
+
+                    <a
+                        href="?sort=date&direction=ASC&page={$page}"
+                        class="sort-link active"
+                    >
+                        Дата ↓
+                    </a>
+
+                {else}
+
+                    <a
+                        href="?sort=date&direction=DESC&page={$page}"
+                        class="sort-link active"
+                    >
+                        Дата ↑
+                    </a>
+
+                {/if}
+
             {else}
-                <a
-                    href="?sort=date&direction=DESC&page={$page}"
-                    class="sort-link active"
-                >
-                    Дата ↑
-                </a>
-            {/if}
-        {else}
-            <a
-                href="?sort=date&direction=DESC&page=1"
-                class="sort-link"
-            >
-                Дата
-            </a>
-        {/if}
 
-        {if $sort === 'views'}
-            {if $direction === 'DESC'}
                 <a
-                    href="?sort=views&direction=ASC&page={$page}"
-                    class="sort-link active"
+                    href="?sort=date&direction=DESC&page=1"
+                    class="sort-link"
                 >
-                    Просмотры ↓
+                    Дата
                 </a>
-            {else}
-                <a
-                    href="?sort=views&direction=DESC&page={$page}"
-                    class="sort-link active"
-                >
-                    Просмотры ↑
-                </a>
+
             {/if}
-        {else}
-            <a
-                href="?sort=views&direction=DESC&page=1"
-                class="sort-link"
-            >
-                Просмотры
-            </a>
-        {/if}
+
+
+            {if $sort === 'views'}
+
+                {if $direction === 'DESC'}
+
+                    <a
+                        href="?sort=views&direction=ASC&page={$page}"
+                        class="sort-link active"
+                    >
+                        Просмотры ↓
+                    </a>
+
+                {else}
+
+                    <a
+                        href="?sort=views&direction=DESC&page={$page}"
+                        class="sort-link active"
+                    >
+                        Просмотры ↑
+                    </a>
+
+                {/if}
+
+            {else}
+
+                <a
+                    href="?sort=views&direction=DESC&page=1"
+                    class="sort-link"
+                >
+                    Просмотры
+                </a>
+
+            {/if}
+
+        </div>
 
     </div>
+
 
     {if $posts}
 
@@ -83,25 +116,44 @@
                 <article class="post-card">
 
                     {if $post.image}
-                        <img
-                            src="{$post.image|escape}"
-                            alt="{$post.title|escape}"
+
+                        <a
+                            href="/category/{$category.name|escape:'url'}/post/{$post.id}"
+                            class="post-card__image-link"
+                            tabindex="-1"
+                            aria-hidden="true"
                         >
+                            <img
+                                src="{$post.image|escape}"
+                                alt=""
+                                class="post-card__image"
+                            >
+                        </a>
+
                     {/if}
 
                     <div class="post-card-content">
 
-                        <h2>
-                            <a href="/category/{$category.name|escape:'url'}/post/{$post.id}">
+                        <h2 class="post-card__title">
+
+                            <a
+                                href="/category/{$category.name|escape:'url'}/post/{$post.id}"
+                            >
                                 {$post.title|escape}
                             </a>
+
                         </h2>
 
                         {if $post.description}
-                            <p>{$post.description|escape}</p>
+
+                            <p class="post-card__description">
+                                {$post.description|escape}
+                            </p>
+
                         {/if}
 
                         <div class="post-meta">
+
                             <span>
                                 {$post.published_at|escape}
                             </span>
@@ -109,6 +161,7 @@
                             <span>
                                 Просмотров: {$post.views}
                             </span>
+
                         </div>
 
                     </div>
@@ -121,51 +174,74 @@
 
     {else}
 
-        <p class="empty-message">
-            В этой категории пока нет статей
-        </p>
+        <div class="empty-message">
+
+            <h2>
+                В этой категории пока нет статей
+            </h2>
+
+            <p>
+                Здесь появятся статьи, когда они будут опубликованы.
+            </p>
+
+        </div>
 
     {/if}
 
 </section>
 
+
 {if $totalPages > 1}
 
-    <nav class="pagination">
+    <nav class="pagination" aria-label="Пагинация">
 
         {if $page > 1}
+
             <a
                 href="?sort={$sort}&direction={$direction}&page={$page - 1}"
-                class="pagination-link"
+                class="pagination-link pagination-link--arrow"
             >
                 ← Назад
             </a>
+
         {/if}
 
-        {for $pageNumber=1 to $totalPages}
 
-            {if $pageNumber === $page}
-                <span class="pagination-link active">
-                    {$pageNumber}
-                </span>
-            {else}
-                <a
-                    href="?sort={$sort}&direction={$direction}&page={$pageNumber}"
-                    class="pagination-link"
-                >
-                    {$pageNumber}
-                </a>
-            {/if}
+        <div class="pagination__pages">
 
-        {/for}
+            {for $pageNumber=1 to $totalPages}
+
+                {if $pageNumber === $page}
+
+                    <span class="pagination-link active">
+                        {$pageNumber}
+                    </span>
+
+                {else}
+
+                    <a
+                        href="?sort={$sort}&direction={$direction}&page={$pageNumber}"
+                        class="pagination-link"
+                    >
+                        {$pageNumber}
+                    </a>
+
+                {/if}
+
+            {/for}
+
+        </div>
+
 
         {if $page < $totalPages}
+
             <a
                 href="?sort={$sort}&direction={$direction}&page={$page + 1}"
-                class="pagination-link"
+                class="pagination-link pagination-link--arrow"
             >
                 Далее →
             </a>
+
         {/if}
 
     </nav>
