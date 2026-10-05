@@ -8,19 +8,23 @@
         ← На главную
     </a>
 
-    <span class="page-header__eyebrow">
-        Категория
-    </span>
+    <div class="category-header__content">
 
-    <h1>
-        {$category.name|escape}
-    </h1>
+        <span class="page-header__eyebrow">
+            Категория
+        </span>
 
-    {if $category.description}
-        <p>
-            {$category.description|escape}
-        </p>
-    {/if}
+        <h1>
+            {$category.name|escape}
+        </h1>
+
+        {if $category.description}
+            <p>
+                {$category.description|escape}
+            </p>
+        {/if}
+
+    </div>
 
 </section>
 
@@ -29,10 +33,19 @@
 
     <div class="category-toolbar">
 
+        <div class="category-toolbar__title">
+
+            <span class="category-toolbar__count">
+                Статьи
+            </span>
+
+        </div>
+
+
         <div class="sorting">
 
             <span class="sorting__label">
-                Сортировка:
+                Сортировка
             </span>
 
             {if $sort === 'date'}
@@ -130,9 +143,25 @@
                             >
                         </a>
 
+                    {else}
+
+                        <div
+                            class="post-card__image-placeholder"
+                            aria-hidden="true"
+                        >
+                            <span>
+                                {$category.name|escape}
+                            </span>
+                        </div>
+
                     {/if}
 
+
                     <div class="post-card-content">
+
+                        <span class="post-card__category">
+                            {$category.name|escape}
+                        </span>
 
                         <h2 class="post-card__title">
 
@@ -144,6 +173,7 @@
 
                         </h2>
 
+
                         {if $post.description}
 
                             <p class="post-card__description">
@@ -152,6 +182,7 @@
 
                         {/if}
 
+
                         <div class="post-meta">
 
                             <span>
@@ -159,7 +190,7 @@
                             </span>
 
                             <span>
-                                Просмотров: {$post.views}
+                                {$post.views} просмотров
                             </span>
 
                         </div>
@@ -175,6 +206,10 @@
     {else}
 
         <div class="empty-message">
+
+            <span class="page-header__eyebrow">
+                Пока пусто
+            </span>
 
             <h2>
                 В этой категории пока нет статей
