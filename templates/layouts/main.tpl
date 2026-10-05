@@ -11,21 +11,29 @@
 <body>
 
 <header class="site-header">
-    <div class="container">
-        <a href="/" class="logo">My Blog</a>
+    <div class="container site-header__inner">
 
-        <nav class="navigation">
-            <a href="/">Главная</a>
+        <a href="/" class="logo">
+            My Blog
+        </a>
+
+        <nav class="navigation" aria-label="Основная навигация">
+            <a href="/" class="navigation__link">
+                Главная
+            </a>
         </nav>
+
     </div>
 </header>
 
-<main class="container">
-    {block name="content"}{/block}
+<main class="site-main">
+    <div class="container">
+        {block name="content"}{/block}
+    </div>
 </main>
 
 <footer class="site-footer">
-    <div class="container">
+    <div class="container site-footer__inner">
         <p>&copy; My Blog</p>
     </div>
 </footer>

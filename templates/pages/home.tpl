@@ -2,77 +2,111 @@
 
 {block name="content"}
 
-<section class="page-header">
-    <h1>My Blog</h1>
-    <p>Последние статьи по категориям</p>
+<section class="page-header home-header">
+    <span class="page-header__eyebrow">
+        My Blog
+    </span>
+
+    <h1>
+        Последние статьи
+    </h1>
+
+    <p>
+        Интересные материалы по разным категориям
+    </p>
 </section>
 
-{foreach $categories as $category}
+<div class="home-categories">
 
-    <section class="category-section">
+    {foreach $categories as $category}
 
-        <div class="section-header">
-            <div>
-                <h2>{$category.name|escape}</h2>
+        <section class="category-section">
 
-                {if $category.description}
-                    <p>{$category.description|escape}</p>
-                {/if}
-            </div>
+            <div class="section-header">
 
-            <a
-                href="/category/{$category.name|escape:'url'}"
-                class="button"
-            >
-                Все статьи
-            </a>
-        </div>
+                <div class="section-header__content">
 
-        <div class="posts-grid">
+                    <h2>
+                        {$category.name|escape}
+                    </h2>
 
-            {foreach $category.posts as $post}
-
-                <article class="post-card">
-
-                    {if $post.image}
-                        <img
-                            src="{$post.image|escape}"
-                            alt="{$post.title|escape}"
-                        >
+                    {if $category.description}
+                        <p>
+                            {$category.description|escape}
+                        </p>
                     {/if}
 
-                    <div class="post-card-content">
+                </div>
 
-                        <h3>
-                            <a href="/category/{$category.name|escape:'url'}/post/{$post.id}">
-                                {$post.title|escape}
+                <a
+                    href="/category/{$category.name|escape:'url'}"
+                    class="button section-header__button"
+                >
+                    Все статьи
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+            <div class="posts-grid">
+
+                {foreach $category.posts as $post}
+
+                    <article class="post-card">
+
+                        {if $post.image}
+                            <a
+                                href="/category/{$category.name|escape:'url'}/post/{$post.id}"
+                                class="post-card__image-link"
+                                tabindex="-1"
+                                aria-hidden="true"
+                            >
+                                <img
+                                    src="{$post.image|escape}"
+                                    alt=""
+                                    class="post-card__image"
+                                >
                             </a>
-                        </h3>
-
-                        {if $post.description}
-                            <p>{$post.description|escape}</p>
                         {/if}
 
-                        <div class="post-meta">
-                            <span>
-                                {$post.published_at|escape}
-                            </span>
+                        <div class="post-card-content">
 
-                            <span>
-                                Просмотров: {$post.views}
-                            </span>
+                            <h3 class="post-card__title">
+                                <a href="/category/{$category.name|escape:'url'}/post/{$post.id}">
+                                    {$post.title|escape}
+                                </a>
+                            </h3>
+
+                            {if $post.description}
+                                <p class="post-card__description">
+                                    {$post.description|escape}
+                                </p>
+                            {/if}
+
+                            <div class="post-meta">
+
+                                <span>
+                                    {$post.published_at|escape}
+                                </span>
+
+                                <span>
+                                    Просмотров: {$post.views}
+                                </span>
+
+                            </div>
+
                         </div>
 
-                    </div>
+                    </article>
 
-                </article>
+                {/foreach}
 
-            {/foreach}
+            </div>
 
-        </div>
+        </section>
 
-    </section>
+    {/foreach}
 
-{/foreach}
+</div>
 
 {/block}
