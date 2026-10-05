@@ -59,6 +59,18 @@ textarea:focus-visible {
   transform: translateX(-2px);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 .container {
   width: min(1200px, 100% - 40px);
   margin: 0 auto;
@@ -387,6 +399,7 @@ textarea:focus-visible {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   color: #6b7280;
   font-size: 14px;
