@@ -881,57 +881,67 @@ textarea:focus-visible {
   }
 }
 .post-page {
-  max-width: 900px;
+  max-width: 920px;
   margin: 40px auto 0;
 }
 
 .post-header {
-  margin-top: 24px;
+  margin-top: 34px;
 }
 
 .post-header h1 {
+  max-width: 900px;
   margin: 0;
-  font-size: clamp(38px, 5vw, 56px);
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+  font-size: clamp(42px, 6vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.055em;
 }
 
 .post-description {
   max-width: 780px;
-  margin: 20px 0 0;
+  margin: 24px 0 0;
   color: #6b7280;
   font-size: 20px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .post-header__meta {
-  justify-content: flex-start;
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 8px;
   margin-top: 28px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.post-header__meta-divider {
+  color: #e5e7eb;
 }
 
 .post-image {
-  margin: 40px 0 36px;
+  margin: 48px 0 48px;
 }
 
 .post-image img {
   display: block;
   width: 100%;
-  max-height: 560px;
+  max-height: 620px;
   object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.09);
 }
 
 .post-content {
-  padding: 0 4px;
+  max-width: 760px;
+  margin: 0 auto;
   color: #1f2937;
   font-size: 18px;
-  line-height: 1.85;
+  line-height: 1.9;
 }
 
 .post-content p {
-  margin: 0 0 1.5em;
+  margin: 0 0 1.6em;
 }
 
 .post-content p:last-child {
@@ -939,15 +949,20 @@ textarea:focus-visible {
 }
 
 .post-categories {
-  margin-top: 40px;
+  max-width: 760px;
+  margin: 48px auto 0;
   padding-top: 28px;
   border-top: 1px solid #e5e7eb;
 }
 
-.post-categories__title {
-  margin: 0 0 14px;
-  font-size: 15px;
-  font-weight: 600;
+.post-section-label {
+  display: block;
+  margin-bottom: 14px;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .category-tags {
@@ -961,44 +976,51 @@ textarea:focus-visible {
   align-items: center;
   min-height: 34px;
   padding: 6px 12px;
-  background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
+  background: #ffffff;
   color: #6b7280;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 .category-tag:hover {
   border-color: #111827;
   background: #111827;
   color: #fff;
+  transform: translateY(-1px);
 }
 
 .similar-section {
-  margin: 80px 0;
+  margin: 100px 0 80px;
+  padding-top: 48px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .similar-section__header {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .similar-section__header h2 {
   margin: 0;
-  font-size: 28px;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
 }
 
 @media (max-width: 900px) {
   .post-page {
     margin-top: 32px;
   }
+  .post-header {
+    margin-top: 30px;
+  }
   .post-image {
-    margin-top: 32px;
+    margin-top: 36px;
+    margin-bottom: 40px;
   }
   .similar-section {
-    margin-top: 64px;
+    margin-top: 80px;
   }
 }
 @media (max-width: 640px) {
@@ -1006,46 +1028,50 @@ textarea:focus-visible {
     margin-top: 28px;
   }
   .post-header {
-    margin-top: 20px;
+    margin-top: 24px;
   }
   .post-header h1 {
-    font-size: 36px;
+    font-size: 40px;
+    line-height: 1.02;
   }
   .post-description {
-    margin-top: 16px;
+    margin-top: 18px;
     font-size: 18px;
     line-height: 1.6;
   }
   .post-header__meta {
     align-items: flex-start;
     flex-direction: column;
-    gap: 6px;
-    margin-top: 20px;
+    gap: 4px;
+    margin-top: 22px;
+  }
+  .post-header__meta-divider {
+    display: none;
   }
   .post-image {
-    margin: 28px 0;
+    margin: 30px 0 34px;
   }
   .post-image img {
-    max-height: 360px;
-    border-radius: 10px;
+    max-height: 380px;
+    border-radius: 11px;
   }
   .post-content {
-    padding: 0;
     font-size: 17px;
-    line-height: 1.75;
+    line-height: 1.8;
   }
   .post-categories {
-    margin-top: 32px;
+    margin-top: 36px;
     padding-top: 24px;
   }
   .similar-section {
-    margin: 56px 0;
+    margin: 64px 0 56px;
+    padding-top: 36px;
   }
   .similar-section__header {
     margin-bottom: 20px;
   }
   .similar-section__header h2 {
-    font-size: 24px;
+    font-size: 27px;
   }
 }
 .error-page {

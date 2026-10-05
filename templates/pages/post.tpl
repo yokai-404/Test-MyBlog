@@ -30,19 +30,32 @@
 
         {/if}
 
-        <div class="post-meta post-header__meta">
+
+        <div class="post-header__meta">
 
             <span>
-                Опубликовано: {$post.published_at|escape}
+                {$post.published_at|escape}
+            </span>
+
+            <span class="post-header__meta-divider">
+                ·
             </span>
 
             <span>
-                Изменено: {$post.updated_at|escape}
+                {$post.views} просмотров
             </span>
 
-            <span>
-                Просмотров: {$post.views}
-            </span>
+            {if $post.updated_at != $post.published_at}
+
+                <span class="post-header__meta-divider">
+                    ·
+                </span>
+
+                <span>
+                    Обновлено {$post.updated_at|escape}
+                </span>
+
+            {/if}
 
         </div>
 
@@ -72,9 +85,9 @@
 
         <section class="post-categories">
 
-            <h2 class="post-categories__title">
+            <span class="post-section-label">
                 Категории
-            </h2>
+            </span>
 
             <div class="category-tags">
 
@@ -105,7 +118,7 @@
         <div>
 
             <span class="page-header__eyebrow">
-                Вам может понравиться
+                Продолжить чтение
             </span>
 
             <h2>
@@ -140,10 +153,25 @@
                             >
                         </a>
 
+                    {else}
+
+                        <div
+                            class="post-card__image-placeholder"
+                            aria-hidden="true"
+                        >
+                            <span>
+                                {$similar.category_name|escape}
+                            </span>
+                        </div>
+
                     {/if}
 
 
                     <div class="post-card-content">
+
+                        <span class="post-card__category">
+                            {$similar.category_name|escape}
+                        </span>
 
                         <h3 class="post-card__title">
 
@@ -172,7 +200,7 @@
                             </span>
 
                             <span>
-                                Просмотров: {$similar.views}
+                                {$similar.views} просмотров
                             </span>
 
                         </div>
@@ -187,9 +215,9 @@
 
     {else}
 
-        <p class="empty-message">
-            Похожих статей нет
-        </p>
+        <div class="empty-message">
+            <p>Похожих статей пока нет.</p>
+        </div>
 
     {/if}
 
