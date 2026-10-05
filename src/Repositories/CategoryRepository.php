@@ -67,4 +67,22 @@ final class CategoryRepository
 
         return $category !== false ? $category : null;
     }
+
+    public function findSystemCategory(): ?array
+{
+    $statement = $this->pdo->query(
+        'SELECT
+            id,
+            name,
+            description,
+            is_system
+         FROM categories
+         WHERE is_system = 1
+         LIMIT 1'
+    );
+
+    $category = $statement->fetch();
+
+    return $category !== false ? $category : null;
+}
 }

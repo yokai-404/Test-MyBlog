@@ -326,4 +326,40 @@ public function getSimilar(
 
     return array_slice($candidates, 0, $limit);
 }
+
+public function hasInvalidCategoryCombination(int $postId): bool
+{
+    $statement = $this->pdo->prepare(
+        'SELECT COUNT(*)
+         FROM post_categories pc
+         INNER JOIN categories c
+             ON c.id = pc.category_id
+         WHERE pc.post_id = :post_id
+           AND c.is_system = 1'
+    );
+
+    $statement->execute([
+        'post_id' => $postId,
+    ]);
+
+    $systemCategoryCount = (int) $statement->fetchColumn();
+
+    if ($systemCategoryCount === 0) {
+        return false;
+    }
+
+    $statement = $this->pdo->prepare(
+        'SELECT COUNT(*)
+         FROM post_categories
+         WHERE post_id = :post_id'
+    );
+
+    $statement->execute([
+        'post_id' => $postId,
+    ]);
+
+    $categoryCount = (int) $statement->fetchColumn();
+
+    return $categoryCount > 1;
+}
 }
