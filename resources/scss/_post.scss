@@ -1,0 +1,121 @@
+@use "variables" as *;
+
+.post-page {
+    max-width: 900px;
+
+    margin: 40px auto;
+}
+
+.post-header {
+    margin-top: 25px;
+}
+
+.post-header h1 {
+    margin-bottom: 15px;
+
+    font-size: 40px;
+}
+
+.post-description {
+    font-size: 20px;
+
+    color: $color-text-muted;
+
+    line-height: 1.6;
+}
+
+.post-header .post-meta {
+    justify-content: flex-start;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+.post-image {
+    margin: 30px 0;
+}
+
+.post-image img {
+    display: block;
+
+    width: 100%;
+    max-height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.post-content {
+    background: $color-surface;
+
+    padding: 30px;
+
+    border: 1px solid $color-border;
+    border-radius: 12px;
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    white-space: normal;
+}
+
+.post-categories {
+    margin-top: 30px;
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.category-tag {
+    padding: 7px 12px;
+
+    background: $color-surface;
+
+    border: 1px solid $color-border;
+    border-radius: 20px;
+
+    &:hover {
+        background: $color-primary;
+        color: #fff;
+    }
+}
+
+.similar-section {
+    margin: 60px 0;
+}
+
+.similar-section h2 {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+    .post-page {
+        margin: 30px auto;
+    }
+
+    .post-header h1 {
+        font-size: 32px;
+    }
+
+    .post-description {
+        font-size: 18px;
+    }
+
+    .post-content {
+        padding: 20px;
+
+        font-size: 17px;
+    }
+
+    .similar-section {
+        margin: 48px 0;
+    }
+}

@@ -1,0 +1,84 @@
+@use "variables" as *;
+
+.back-link {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: $color-text-muted;
+
+    &:hover {
+        color: $color-text;
+    }
+}
+
+.category-page {
+    margin-top: 30px;
+}
+
+.sorting {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.sort-link {
+    padding: 8px 14px;
+
+    border: 1px solid $color-border;
+    border-radius: 6px;
+
+    background: $color-surface;
+
+    &:hover,
+    &.active {
+        background: $color-primary;
+        color: #fff;
+    }
+}
+
+.posts-list {
+    display: grid;
+    gap: 20px;
+}
+
+.posts-list .post-card {
+    display: flex;
+}
+
+.posts-list .post-card img {
+    width: 240px;
+    height: 180px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+}
+
+.empty-message {
+    padding: 30px;
+
+    background: $color-surface;
+
+    border: 1px solid $color-border;
+    border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+    .sorting {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .posts-list .post-card {
+        display: block;
+    }
+
+    .posts-list .post-card img {
+        width: 100%;
+        height: 210px;
+    }
+}

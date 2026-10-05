@@ -1,0 +1,26 @@
+@use "variables" as *;
+
+.container {
+    width: min($container-width, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.site-main {
+    min-height: calc(100vh - 150px);
+}
+
+@media (max-width: 900px) {
+    .container {
+        width: min($container-width, calc(100% - 32px));
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min($container-width, calc(100% - 24px));
+    }
+
+    .site-main {
+        min-height: calc(100vh - 180px);
+    }
+}
