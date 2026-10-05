@@ -54,3 +54,19 @@ textarea:focus-visible {
     outline: 3px solid rgba(59, 130, 246, 0.35);
     outline-offset: 3px;
 }
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: $color-text-muted;
+    font-size: 14px;
+    font-weight: 500;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+
+    &:hover {
+        color: $color-text;
+        transform: translateX(-2px);
+    }
+}

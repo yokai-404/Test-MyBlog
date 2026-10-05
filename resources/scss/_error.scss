@@ -1,56 +1,88 @@
 @use "variables" as *;
 
 .error-page {
+    position: relative;
+    min-height: 560px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-
-    padding: 110px 20px;
-
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 20px;
     text-align: center;
 }
 
-.error-page h1 {
-    margin: 12px 0 0;
 
-    font-size: clamp(80px, 14vw, 140px);
-    line-height: 0.9;
-
-    letter-spacing: -0.07em;
-
-    color: $color-text;
+.error-page__number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: rgba(17, 24, 39, 0.035);
+    font-size: clamp(180px, 30vw, 420px);
+    font-weight: 800;
+    line-height: 0.8;
+    letter-spacing: -0.09em;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    pointer-events: none;
 }
 
-.error-page h2 {
-    margin: 24px 0 0;
 
-    font-size: 28px;
-    line-height: 1.2;
-
-    letter-spacing: -0.025em;
+.error-page__content {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
 }
 
-.error-page p {
+
+.error-page__content h1 {
+    margin: 14px 0 0;
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+}
+
+
+.error-page__content p {
     max-width: 500px;
-
-    margin: 12px 0 28px;
-
+    margin: 16px auto 28px;
     color: $color-text-muted;
-
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.65;
 }
+
+
+.error-page__content .button {
+    gap: 10px;
+}
+
+.error-page__content .button span {
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.error-page__content .button:hover span {
+    transform: translateX(3px);
+}
+
 
 @media (max-width: 640px) {
+
     .error-page {
-        padding: 80px 12px;
+        min-height: 500px;
+        padding: 60px 12px;
     }
 
-    .error-page h1 {
-        font-size: 88px;
+    .error-page__number {
+        font-size: 220px;
     }
 
-    .error-page h2 {
-        font-size: 24px;
+    .error-page__content h1 {
+        font-size: 34px;
     }
+
+    .error-page__content p {
+        font-size: 16px;
+    }
+
 }

@@ -4,25 +4,31 @@
 
 <section class="error-page">
 
-    <span class="page-header__eyebrow">
-        Ошибка
-    </span>
-
-    <h1>
+    <div class="error-page__number">
         404
-    </h1>
+    </div>
 
-    <h2>
-        Страница не найдена
-    </h2>
+    <div class="error-page__content">
 
-    <p>
-        Возможно, страница была удалена или вы перешли по неверной ссылке.
-    </p>
+        <span class="page-header__eyebrow">
+            Ошибка
+        </span>
 
-    <a href="/" class="button">
-        Вернуться на главную
-    </a>
+        <h1>
+            Страница не найдена
+        </h1>
+
+        <p>
+            Возможно, страница была удалена, перемещена
+            или вы перешли по неверной ссылке.
+        </p>
+
+        <a href="/" class="button">
+            Вернуться на главную
+            <span aria-hidden="true">→</span>
+        </a>
+
+    </div>
 
 </section>
 
