@@ -14,11 +14,11 @@ final class Connection
 
         $env = self::loadEnv();
 
-        $host = $env['DB_HOST'] ?? '127.0.0.1';
-        $port = $env['DB_PORT'] ?? '3306';
-        $database = $env['DB_DATABASE'] ?? '';
-        $username = $env['DB_USERNAME'] ?? '';
-        $password = $env['DB_PASSWORD'] ?? '';
+        $host = getenv('DB_HOST') ?: ($env['DB_HOST'] ?? '127.0.0.1');
+        $port = getenv('DB_PORT') ?: ($env['DB_PORT'] ?? '3306');
+        $database = getenv('DB_DATABASE') ?: ($env['DB_DATABASE'] ?? '');
+        $username = getenv('DB_USERNAME') ?: ($env['DB_USERNAME'] ?? '');
+        $password = getenv('DB_PASSWORD') ?: ($env['DB_PASSWORD'] ?? '');
 
         $dsn = sprintf(
             'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
@@ -46,7 +46,7 @@ final class Connection
         $envFile = dirname(__DIR__, 2) . '/.env';
 
         if (!file_exists($envFile)) {
-            throw new RuntimeException('.env file not found.');
+            return [];
         }
 
         $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
