@@ -277,28 +277,23 @@ public function getSimilar(
             (int) $row['category_id'];
     }
 
-    /*
-     * Сначала ищем статьи с максимальным количеством
-     * совпадающих категорий.
-     *
-     * При одинаковом количестве совпадений
-     * учитываем приоритет категорий текущей статьи.
-     */
     foreach ($candidates as &$candidate) {
         $candidate['match_level'] = 0;
         $candidate['priority'] = PHP_INT_MAX;
 
         foreach ($categoryIds as $priority => $categoryId) {
-            if (in_array(
+            if (!in_array(
                 $categoryId,
                 $candidate['category_ids'],
                 true
             )) {
-                $candidate['match_level']++;
+                continue;
+            }
 
-                if ($candidate['priority'] === PHP_INT_MAX) {
-                    $candidate['priority'] = $priority;
-                }
+            $candidate['match_level']++;
+
+            if ($candidate['priority'] === PHP_INT_MAX) {
+                $candidate['priority'] = $priority;
             }
         }
     }
